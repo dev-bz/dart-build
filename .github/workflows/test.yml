@@ -45,10 +45,12 @@ jobs:
           fetch dart
           cd sdk
           git checkout 2.17.0
+          cd ..
+          echo "target_os = ['android']" >> .gclient
+          gclient sync -D --force --reset
       - name: Build
         run: |
           cd dart-sdk/sdk
-          echo "target_os = ['android']" >> ../.gclient
           ./tools/build.py --no-goma --mode release --arch arm64c --os android create_sdk
       - name: Done
         run: echo Finished
