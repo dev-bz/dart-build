@@ -40,6 +40,8 @@ jobs:
           export PATH="$PATH:$PWD/depot_tools"
       - name: Get Sources
         run: |
+          echo $PATH
+          ls depot_tools
           mkdir dart-sdk
           cd dart-sdk
           fetch dart
