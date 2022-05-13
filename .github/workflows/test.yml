@@ -36,7 +36,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Get depot_tools
         run: |
-          git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+          git clone --depth=1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
       - name: Get Sources
         run: |
           export PATH="$PATH:$PWD/depot_tools"
@@ -47,7 +47,6 @@ jobs:
           git checkout 2.17.0
       - name: Build
         run: |
-          # From within the "dart-sdk" directory.
           cd dart-sdk/sdk
           echo "target_os = ['android']" >> ../.gclient
           ./tools/build.py --no-goma --mode release --arch arm64c --os android create_sdk
