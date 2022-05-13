@@ -31,7 +31,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install deps
-        run: sudo apt-get install g++-multilib git python3 curl
+        run: sudo apt-get install g++-multilib git python3 curl ninja
 
       # Runs a set of commands using the runners shell
       - name: Get depot_tools
@@ -43,11 +43,12 @@ jobs:
           mkdir dart-sdk
           cd dart-sdk
           fetch dart
+          cd sdk
+          git checkout 2.17.0
       - name: Build
         run: |
           # From within the "dart-sdk" directory.
           cd dart-sdk/sdk
-          git checkout 2.17.0
           echo "target_os = ['android']" >> ../.gclient
           ./tools/build.py --no-goma --mode release --arch arm64c --os android create_sdk
       - name: Done
