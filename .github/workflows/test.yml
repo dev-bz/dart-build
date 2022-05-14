@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target_arch: [arm64c]
+        target_arch: [arm,ia32,arm64c,x64c]
         # target_arch: [aarch64, arm, i686, x86_64]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -51,6 +51,6 @@ jobs:
       - name: Build
         run: |
           cd dart-sdk/sdk
-          ./tools/build.py --no-goma --mode release --arch arm64c --os android create_sdk
+          ./tools/build.py --no-goma --mode release --arch ${{ matrix.target_arch }} --os android create_sdk
       - name: Done
         run: echo Finished
