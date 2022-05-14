@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target_arch: [aarch64]
+        target_arch: [arm64c]
         # target_arch: [aarch64, arm, i686, x86_64]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
